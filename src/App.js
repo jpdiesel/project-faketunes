@@ -9,15 +9,18 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 
 const LOGIN_MINIMUN_CHAR = 3;
+const SEARCH_MINIMUN_CHAR = 2;
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       loginInput: '',
+      searchInput: '',
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.enableLoginButton = this.enableLoginButton.bind(this);
+    this.enableSearchButton = this.enableSearchButton.bind(this);
   }
 
   onInputChange = ({ target }) => {
@@ -35,12 +38,26 @@ class App extends Component {
     } return true;
   }
 
+  enableSearchButton = () => {
+    const { searchInput } = this.state;
+    if (searchInput.length >= SEARCH_MINIMUN_CHAR) {
+      return false;
+    } return true;
+  }
+
   render() {
     return (
       <BrowserRouter>
         <p>TrybeTunes</p>
         <Switch>
-          <Route path="/search" component={ Search } />
+          <Route
+            path="/search"
+            render={ () => (<Search
+              { ...this.state }
+              enableSearchButton={ this.enableSearchButton() }
+              onInputChange={ this.onInputChange }
+            />) }
+          />
           <Route path="/favorites" component={ Favorites } />
           <Route path="/profile/edit" component={ ProfileEdit } />
           <Route path="/profile" component={ Profile } />
