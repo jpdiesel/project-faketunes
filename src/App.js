@@ -18,12 +18,12 @@ class App extends Component {
       loginInput: '',
       searchInput: '',
     };
-    this.onInputChange = this.onInputChange.bind(this);
+    this.handleChanger = this.handleChanger.bind(this);
     this.enableLoginButton = this.enableLoginButton.bind(this);
     this.enableSearchButton = this.enableSearchButton.bind(this);
   }
 
-  onInputChange = ({ target }) => {
+  handleChanger = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
@@ -55,7 +55,7 @@ class App extends Component {
             render={ () => (<Search
               { ...this.state }
               enableSearchButton={ this.enableSearchButton() }
-              onInputChange={ this.onInputChange }
+              handleChanger={ this.handleChanger }
             />) }
           />
           <Route path="/favorites" component={ Favorites } />
@@ -68,7 +68,7 @@ class App extends Component {
             render={ () => (<Login
               { ...this.state }
               enableLogin={ this.enableLoginButton() }
-              onInputChange={ this.onInputChange }
+              handleChanger={ this.handleChanger }
             />) }
           />
           <Route exact path="/*" component={ NotFound } />
