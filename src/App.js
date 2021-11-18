@@ -9,18 +9,15 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 
 const LOGIN_MINIMUN_CHAR = 3;
-const SEARCH_MINIMUN_CHAR = 2;
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       loginInput: '',
-      searchInput: '',
     };
     this.handleChanger = this.handleChanger.bind(this);
     this.enableLoginButton = this.enableLoginButton.bind(this);
-    this.enableSearchButton = this.enableSearchButton.bind(this);
   }
 
   handleChanger = ({ target }) => {
@@ -38,13 +35,6 @@ class App extends Component {
     } return true;
   }
 
-  enableSearchButton = () => {
-    const { searchInput } = this.state;
-    if (searchInput.length >= SEARCH_MINIMUN_CHAR) {
-      return false;
-    } return true;
-  }
-
   render() {
     return (
       <BrowserRouter>
@@ -54,8 +44,6 @@ class App extends Component {
             path="/search"
             render={ () => (<Search
               { ...this.state }
-              enableSearchButton={ this.enableSearchButton() }
-              handleChanger={ this.handleChanger }
             />) }
           />
           <Route path="/favorites" component={ Favorites } />
