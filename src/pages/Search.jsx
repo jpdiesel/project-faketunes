@@ -1,5 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
@@ -114,9 +113,3 @@ export default class Search extends React.Component {
     );
   }
 }
-
-Search.propTypes = {
-  enableSearchButton: propTypes.bool,
-  searchInput: propTypes.func,
-  onInputChange: propTypes.func,
-}.isRequired;

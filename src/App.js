@@ -8,33 +8,7 @@ import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 
-const LOGIN_MINIMUN_CHAR = 3;
-
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      loginInput: '',
-    };
-    this.handleChanger = this.handleChanger.bind(this);
-    this.enableLoginButton = this.enableLoginButton.bind(this);
-  }
-
-  handleChanger = ({ target }) => {
-    const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({
-      [name]: value,
-    });
-  }
-
-  enableLoginButton = () => {
-    const { loginInput } = this.state;
-    if (loginInput.length >= LOGIN_MINIMUN_CHAR) {
-      return false;
-    } return true;
-  }
-
   render() {
     return (
       <BrowserRouter>
@@ -55,8 +29,6 @@ class App extends Component {
             path="/"
             render={ () => (<Login
               { ...this.state }
-              enableLogin={ this.enableLoginButton() }
-              handleChanger={ this.handleChanger }
             />) }
           />
           <Route exact path="/*" component={ NotFound } />

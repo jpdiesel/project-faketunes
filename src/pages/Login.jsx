@@ -1,8 +1,9 @@
 import { React, Component } from 'react';
-import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 import Carregando from './Carregando';
+
+const LOGIN_MINIMUN_CHAR = 3;
 
 export default class Login extends Component {
   constructor() {
@@ -10,8 +11,26 @@ export default class Login extends Component {
     this.state = {
       loading: false,
       redirect: false,
+      loginInput: '',
     };
+    this.handleChanger = this.handleChanger.bind(this);
+    this.enableLoginButton = this.enableLoginButton.bind(this);
     this.loginValidation = this.loginValidation.bind(this);
+  }
+
+  handleChanger = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  enableLoginButton = () => {
+    const { loginInput } = this.state;
+    if (loginInput.length >= LOGIN_MINIMUN_CHAR) {
+      return false;
+    } return true;
   }
 
   loginValidation = async (input) => {
@@ -21,12 +40,11 @@ export default class Login extends Component {
   }
 
   render() {
-    const { loading, redirect } = this.state;
     const {
+      loading,
+      redirect,
       loginInput,
-      enableLogin,
-      handleChanger,
-    } = this.props;
+    } = this.state;
 
     return (
       <div data-testid="page-login">
@@ -38,13 +56,13 @@ export default class Login extends Component {
           dafaultvalue={ loginInput }
           id=""
           name="loginInput"
-          onChange={ handleChanger }
+          onChange={ this.handleChanger }
           placeholder="Insira seu nome aqui"
         />
         <button
           data-testid="login-submit-button"
           type="submit"
-          disabled={ enableLogin }
+          disabled={ this.enableLoginButton() }
           onClick={ () => this.loginValidation(loginInput) }
         >
           {/* o onClick estava dando problema, dizendo que não era uma função, consegui resolver graças a esse link
@@ -60,9 +78,3 @@ export default class Login extends Component {
 // Também feito com a ajuda dos seguintes links:
 // https://stackoverflow.com/questions/43556212/failed-form-proptype-you-provided-a-value-prop-to-a-form-field-without-an-on
 // https://stackoverflow.com/questions/43230194/how-to-use-redirect-in-the-new-react-router-dom-of-reactjs/43230829#43230829
-
-Login.propTypes = {
-  enableLogin: PropTypes.bool,
-  loginInput: PropTypes.func,
-  handleChanger: PropTypes.func,
-}.isRequired;

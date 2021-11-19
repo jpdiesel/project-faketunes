@@ -32,7 +32,7 @@ export default class Header extends Component {
           : (
             <p data-testid="header-user-name">
               Bem vindo(a),
-              {name}
+              {` ${name}`}
             </p>) }
         <Link data-testid="link-to-search" to="/search">Pesquisa</Link>
         <Link data-testid="link-to-profile" to="/profile">Perfil</Link>
