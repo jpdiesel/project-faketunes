@@ -23,7 +23,10 @@ export default class MusicCard extends Component {
     const { favoritas } = this.state;
     this.setState({ loading: true });
     const musicObj = await api.getFavoriteSongs();
-    musicObj.map((music) => favoritas.push(music.trackId));
+    musicObj.map((music) => (
+      favoritas.includes(music.trackId)
+        ? null
+        : favoritas.push(music.trackId)));
     this.setState({ loading: false });
   }
 
@@ -35,33 +38,24 @@ export default class MusicCard extends Component {
     });
   }
 
-  // favoriteSong = async (musicData, trackId) => {
-  //   this.setState({ loading: true });
-  //   const { favoritas } = this.state;
-  //   if (favoritas.includes(trackId)) {
-  //     for (let i = 0; i < favoritas.length; i += 1) {
-  //       if (favoritas[i] === trackId) {
-  //         favoritas.splice(i, 1);
-  //       }
-  //     }
-  //   } else {
-  //     favoritas.push(trackId);
-  //   }
-  //   await api.addSong(musicData);
-  //   this.setState({ loading: false });
-  // }
-
   favoriteSong = async (musicData, trackId) => {
-    this.setState({ loading: true });
     const { favoritas } = this.state;
-    favoritas.push(trackId);
-    await api.addSong(musicData);
-    this.setState({ loading: false });
+    if (favoritas.includes(trackId)) {
+      this.setState({ loading: true });
+      await api.removeSong(musicData);
+      for (let i = 0; i < favoritas.length; i += 1) {
+        if (favoritas[i] === trackId) {
+          favoritas.splice(i, 1);
+          this.setState({ loading: false });
+        }
+      }
+    } else {
+      this.setState({ loading: true });
+      favoritas.push(trackId);
+      await api.addSong(musicData);
+      this.setState({ loading: false });
+    }
   }
-
-  // removeFavoriteSong = async () => {
-  //   api.removeSong();
-  // }
 
   render() {
     const {
