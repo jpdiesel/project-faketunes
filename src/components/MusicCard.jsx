@@ -8,11 +8,23 @@ export default class MusicCard extends Component {
     super();
     this.state = {
       loading: false,
-      // check: false,
       favoritas: [],
     };
     this.handleChanger = this.handleChanger.bind(this);
     this.favoriteSong = this.favoriteSong.bind(this);
+    this.loadFavoriteSongs = this.loadFavoriteSongs.bind(this);
+  }
+
+  componentDidMount() {
+    this.loadFavoriteSongs();
+  }
+
+  loadFavoriteSongs = async () => {
+    const { favoritas } = this.state;
+    this.setState({ loading: true });
+    const musicObj = await api.getFavoriteSongs();
+    musicObj.map((music) => favoritas.push(music.trackId));
+    this.setState({ loading: false });
   }
 
   handleChanger = ({ target }) => {
@@ -23,33 +35,33 @@ export default class MusicCard extends Component {
     });
   }
 
-  // favoriteSong = async (musicData) => {
-  //   const { check } = this.state;
-  //   if (check) {
-  //     this.setState({ check: false });
-  //   } if (!check) {
-  //     this.setState({ loading: true });
-  //     await api.addSong(musicData);
-  //     this.setState({ check: true });
+  // favoriteSong = async (musicData, trackId) => {
+  //   this.setState({ loading: true });
+  //   const { favoritas } = this.state;
+  //   if (favoritas.includes(trackId)) {
+  //     for (let i = 0; i < favoritas.length; i += 1) {
+  //       if (favoritas[i] === trackId) {
+  //         favoritas.splice(i, 1);
+  //       }
+  //     }
+  //   } else {
+  //     favoritas.push(trackId);
   //   }
+  //   await api.addSong(musicData);
   //   this.setState({ loading: false });
   // }
 
   favoriteSong = async (musicData, trackId) => {
     this.setState({ loading: true });
     const { favoritas } = this.state;
-    if (favoritas.includes(trackId)) {
-      for (let i = 0; i < favoritas.length; i += 1) {
-        if (favoritas[i] === trackId) {
-          favoritas.splice(i, 1);
-        }
-      }
-    } else {
-      favoritas.push(trackId);
-      await api.addSong(musicData);
-    }
+    favoritas.push(trackId);
+    await api.addSong(musicData);
     this.setState({ loading: false });
   }
+
+  // removeFavoriteSong = async () => {
+  //   api.removeSong();
+  // }
 
   render() {
     const {

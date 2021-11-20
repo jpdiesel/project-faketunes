@@ -33,7 +33,6 @@ export default class Album extends React.Component {
       id: albumId,
       musics: await getMusics(albumId),
     });
-    console.log(getMusics(albumId));
     const { musics } = this.state;
     this.setState({
       name: musics[0].artistName,
@@ -55,7 +54,7 @@ export default class Album extends React.Component {
         <Header />
         <p data-testid="artist-name">{name}</p>
         <p data-testid="album-name">{album}</p>
-        <img src={ image } alt={ `Álbum ${album} de ${name}` } />
+        <img src={ image } alt={ `Capa do álbum ${album} de ${name}` } />
         <Route
           path={ `/album/${id}` }
           render={ () => (<MusicCard
