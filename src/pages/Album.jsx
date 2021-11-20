@@ -13,6 +13,7 @@ export default class Album extends React.Component {
       name: '',
       album: '',
       id: '',
+      image: '',
     };
   }
 
@@ -28,12 +29,17 @@ export default class Album extends React.Component {
     const { location } = this.props;
     const albumPath = location.pathname;
     const albumId = albumPath.substring(albumPath.lastIndexOf('/') + 1);
-    this.setState({ id: albumId });
-    this.setState({ musics: await getMusics(albumId) });
+    this.setState({
+      id: albumId,
+      musics: await getMusics(albumId),
+    });
     console.log(getMusics(albumId));
     const { musics } = this.state;
-    this.setState({ name: musics[0].artistName });
-    this.setState({ album: musics[0].collectionName });
+    this.setState({
+      name: musics[0].artistName,
+      album: musics[0].collectionName,
+      image: musics[0].collectionViewUrl,
+    });
   }
 
   render() {
@@ -42,12 +48,14 @@ export default class Album extends React.Component {
       album,
       musics,
       id,
+      image,
     } = this.state;
     return (
       <div data-testid="page-album">
         <Header />
         <p data-testid="artist-name">{name}</p>
         <p data-testid="album-name">{album}</p>
+        <img src={ image } alt={ `Álbum ${album} de ${name}` } />
         <Route
           path={ `/album/${id}` }
           render={ () => (<MusicCard
