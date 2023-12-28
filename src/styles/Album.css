@@ -1,0 +1,63 @@
+.song-list {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  /* flex-wrap: wrap; */
+  text-align: center;
+  overflow-y: scroll;
+  margin-bottom: 50px;
+  height: 400px;
+  background-color: rgba(74, 72, 72, 0.5);
+  width: 500px;
+  border-left: solid 5px rgba(101, 100, 100, 0.5);
+  border-right: solid 5px rgba(101, 100, 100, 0.5);
+}
+
+.song-list::-webkit-scrollbar {
+  display: none;
+}
+
+.song {
+  white-space: nowrap;
+}
+
+.artist-title {
+  text-align: center;
+  width: auto;
+}
+
+.album-name {
+  text-align: center;
+}
+
+.album-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+  margin-bottom: 25px;
+}
+
+label {
+  /* display: block; */
+  padding-left: 20px;
+}
+
+svg {
+  /* background-color: rgba(101, 100, 100, 0.5); */
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+#music-checkbox {
+  width: auto;
+  display: initial;
+} 
+
+#song-player {
+  height: 30px;
+}
+
+.no-songs-text {
+  margin-top: 100px;
+}

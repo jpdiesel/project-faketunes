@@ -1,0 +1,32 @@
+.container {
+  text-align: center;
+}
+
+.not-found {
+  background-image: url("https://cdn.dicionariopopular.com/imagens/giphy-1.gif");
+  height: 200px;
+  width: 300px;
+  display: block;
+  margin: auto;
+}
+
+.you-now {
+  margin-top: 10%;
+}
+
+.doesnt-exist {
+  margin-bottom: 35px;
+}
+
+.go-back-button {
+  /* top: 50px; */
+  cursor: pointer;
+  background-color: #e74c3c;
+  padding: 10px 20px;
+}
+
+
+.go-back-button:hover {
+  background-color: #e06d60;
+  transition-duration: 0.2s;
+}

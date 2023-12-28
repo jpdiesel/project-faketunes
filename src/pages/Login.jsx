@@ -2,6 +2,7 @@ import { React, Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 import Carregando from './Carregando';
+import '../styles/Login.css'
 
 const LOGIN_MINIMUN_CHAR = 3;
 
@@ -47,28 +48,33 @@ export default class Login extends Component {
     } = this.state;
 
     return (
-      <div data-testid="page-login">
-        { loading ? <Carregando /> : null }
-        { redirect ? <Redirect to="/search" /> : null }
-        <input
-          data-testid="login-name-input"
-          type="text"
-          dafaultvalue={ loginInput }
-          id=""
-          name="loginInput"
-          onChange={ this.handleChanger }
-          placeholder="Insira seu nome aqui"
-        />
-        <button
-          data-testid="login-submit-button"
-          type="submit"
-          disabled={ this.enableLoginButton() }
-          onClick={ () => this.loginValidation(loginInput) }
-        >
-          {/* o onClick estava dando problema, dizendo que não era uma função, consegui resolver graças a esse link
-          https://stackoverflow.com/questions/44833583/expected-onclick-listener-to-be-a-function-instead-got-type-object-react-redu */}
-          Entrar
-        </button>
+      <div data-testid="page-login" className="group">
+        <div className="input-container">
+          { loading ? <Carregando /> : null }
+          { redirect ? <Redirect to="/search" /> : null }
+          <input
+            data-testid="login-name-input"
+            type="text"
+            defaultValue={ loginInput }
+            id="name"
+            name="loginInput"
+            onChange={ this.handleChanger }
+            // placeholder="Insira seu nome aqui"
+          />
+          <label htmlFor="name">Nome</label>
+          <button
+            className="login-button"
+            data-testid="login-submit-button"
+            type="submit"
+            disabled={ this.enableLoginButton() }
+            onClick={ () => this.loginValidation(loginInput) }
+          >
+            {/* o onClick estava dando problema, dizendo que não era uma função, consegui resolver graças a esse link
+            https://stackoverflow.com/questions/44833583/expected-onclick-listener-to-be-a-function-instead-got-type-object-react-redu */}
+            Entrar
+          </button>
+
+        </div>
       </div>
     );
   }

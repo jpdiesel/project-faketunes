@@ -1,0 +1,195 @@
+body {
+  color: white;
+  /* background-image: rgb(33, 33, 33); */
+  /* background-color: rgb(33, 33, 33); */
+  /* background: rgb(33, 33, 33); */
+}
+
+.welcome-text {
+  padding-left: 70px;
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 30px;
+  height: 27px;
+  left: 25px;
+  top: 13px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #6d6c6c;
+  transition-duration: 0.2s;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+  width: 200px !important;
+  overflow-y: hidden;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: rgba(139, 137, 137, 0.3);
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+  width: 250px;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  /* padding: 0.8em; */
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+  margin-top: 10px;
+  /* left: -20px; */
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* .header-component {
+  width: 100%;
+  height: 50px;
+  background-color: blue;
+}
+
+.nav-bar {
+  display: flex;
+  background-color: dimgray;
+  width: 2rem;
+  height: 2rem;
+  justify-content: space-around;
+  flex-flow: column nowrap;
+  z-index: 10;
+}
+
+.burguer {
+  width: 2rem;
+  height: 0.25rem;
+  border-radius: 10px;
+  background-color: black;
+  transform-origin: 1px;
+  transition: all 0.3s linear;
+} */
+
+#search-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#search-input {
+  height: 15px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  width: 350px;
+}
+
+#search-input:focus {
+  outline: none;
+}
+
+#search-button {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#results {
+  margin-left: 40px;
+}
+
+.all-albums {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 40px;
+  margin-left: 40px;
+  overflow-y: auto;
+  height: 400px;
+}
+
+.all-albums::-webkit-scrollbar {
+  display: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.album {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  padding-top: 20px;
+  padding-right: 15px;
+  background-color: rgba(52, 50, 50, 0.1);
+  margin-right: 15px;
+}
+
+.album:hover {
+  transition-duration: 0.2s;
+  background-color: rgba(67, 66, 66, 0.7);
+  /* border: 1px white solid; */
+}
+
+a:link {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.album-title {
+  width: 125px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+}
+
+.artist-name {
+  width: 125px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+}

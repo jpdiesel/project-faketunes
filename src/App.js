@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <p>TrybeTunes</p>
+        {/* <p style={{ textAlign: 'center', color: 'whitesmoke' }}>FAKETUNES</p> */}
         <Switch>
           <Route
             path="/search"

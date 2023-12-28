@@ -7,7 +7,7 @@ export default class Profile extends React.Component {
     return (
       <div data-testid="page-profile">
         <Header />
-        <Link to="/profile-edit">Editar Perfil</Link>
+        <Link to="/profile/edit">Editar Perfil</Link>
       </div>
     );
   }
